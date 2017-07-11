@@ -3,37 +3,8 @@
   <main id="app">
 
     <!-- Header Area -->
-    <header>
+    <create-header></create-header>
 
-      <!-- Logo -->
-      <div class="logo">
-        <h2>Artisan</h2>
-        <p>
-          <small>curated by <a href="https://reddit.com/r/artisanvideos">r/ArtisanVideos</a></small>
-        </p>
-      </div>
-
-      <!-- Navigation -->
-      <div class="navigation">
-
-        <!-- Action Buttons -->
-        <ul class='action-buttons'>
-          <li><button type="button" name="search" class="nav-btn">Search</button></li>
-          <li><button type="button" name="open" class="nav-btn">Open</button></li>
-        </ul>
-
-        <div id="aside">
-          <section class="categories">
-            <!-- List of Different Categories -->
-          </section>
-          <section class="social">
-            <!-- Links to my social media and github -->
-          </section>
-        </div>
-
-      </div>
-
-    </header>
 
     <!-- Main Area -->
     <div class="container">
@@ -76,11 +47,17 @@
 </template>
 
 <script>
+
+import CreateHeader from './components/CreateHeader.vue'
+
 export default {
   name: 'app',
+  components: {
+    CreateHeader
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+
     }
   }
 }
@@ -88,9 +65,31 @@ export default {
 
 <style lang="scss">
 
+  @import "./assets/scss/variables.scss";
+
   #app {
     font-family: 'Alias', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: $green;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+
+    section {
+      width: 50%;
+      min-width: 250px;
+      padding: 2em;
+      box-sizing: border-box;
+    }
   }
 
 </style>

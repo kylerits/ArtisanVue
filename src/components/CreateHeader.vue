@@ -4,7 +4,7 @@
 
     <!-- Logo -->
     <div class="logo">
-      <h2 class="logo-title">{{ title }}</h2>
+      <h2 class="logo-title">Artisan</h2>
       <p class="logo-text">
         <small>curated by <a href="https://reddit.com/r/artisanvideos">r/ArtisanVideos</a></small>
       </p>
@@ -15,18 +15,20 @@
 
       <!-- Action Buttons -->
       <ul class='action-buttons'>
-        <li><button type="button" name="search" class="nav-btn">Search</button></li>
-        <li><button type="button" name="open" class="nav-btn">Open</button></li>
+        <li><button type="button" name="search" class="nav-btn" @click="show = !show">Search</button></li>
+        <li><button type="button" name="open" class="nav-btn" @click="visible = !visible">
+          <span v-if="!visible">Open</span>
+          <span v-else>Close</span>
+        </button></li>
       </ul>
 
-      <div id="aside">
-        <section class="categories">
-          <!-- List of Different Categories -->
-        </section>
-        <section class="social">
-          <!-- Links to my social media and github -->
-        </section>
-      </div>
+      <transition name="slide-fade">
+        <search-form key="1" v-if="show"></search-form>
+      </transition>
+
+      <transition name="slide-fade">
+        <my-aside key="2" v-if="visible"></my-aside>
+      </transition>
 
     </div>
 
@@ -35,14 +37,22 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      title: 'Artisan',
-      msg: 'Welcome to Your Vue.js App'
+
+  import MyAside from './Aside.vue'
+  import SearchForm from './SearchForm.vue'
+
+  export default {
+    components: {
+      MyAside,
+      SearchForm
+    },
+    data () {
+      return {
+        visible: false,
+        show: false
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
@@ -67,12 +77,28 @@ export default {
     }
 
     .navigation {
+
+      position: relative;
+
       ul.action-buttons {
         li {
           display: inline-block;
         }
       }
     }
+  }
+
+  // Transition Component Styling
+
+  .slide-fade-enter-active {
+    transition: all .2s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX(30px);
+    opacity: 0;
   }
 
 </style>

@@ -67,6 +67,11 @@ export default {
 
   @import "./assets/scss/variables.scss";
 
+  body {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
   #app {
     font-family: 'Alias', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

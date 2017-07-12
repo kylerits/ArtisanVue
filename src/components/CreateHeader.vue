@@ -15,10 +15,12 @@
 
       <!-- Action Buttons -->
       <ul class='action-buttons'>
-        <li><button type="button" name="search" class="nav-btn" @click="show = !show">Search</button></li>
-        <li><button type="button" name="open" class="nav-btn" @click="visible = !visible">
-          <span v-if="!visible">Open</span>
-          <span v-else>Close</span>
+        <li><button type="button" name="search" class="btn-icon" @click="show = !show">
+          <span class="ion-ios-search"></span>
+        </button></li>
+        <li><button type="button" name="open" class="btn-icon" @click="visible = !visible">
+          <span class="ion-ios-plus-outline" v-if="!visible"></span>
+          <span class="ion-ios-minus-outline" v-else></span>
         </button></li>
       </ul>
 

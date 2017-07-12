@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: $green;
+}
+
+button {
+  cursor: pointer;
+
+}
+
+.btn-icon {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 2.5em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-play {
+  padding: .2em .4em .2em .5em;
+  line-height: 0;
+  border-radius: 50%;
+  border: solid 1px black;
+  box-sizing: border-box;
+}
+
+// Text Elements
+h1, h2, h3, h4, h5, p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  line-height: 1.5em;
+}

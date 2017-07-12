@@ -1,6 +1,9 @@
 <template lang="html">
   <aside id="search-form">
-    
+    <form class="search-form">
+      <input type="text" name="search-input" placeholder="Search">
+      <input type="submit" name="search-button" value="Search">
+    </form>
   </aside>
 </template>
 

@@ -16,7 +16,9 @@
           <!-- Initial Message -->
           <h2>Play a Random Video</h2>
           <!-- Plays a random video from the list. Or the first one. It's not really to important which. -->
-          <button type="button" name="playRandom" class="btn">Play</button>
+          <button type="button" name="playRandom" class="btn-icon btn-play">
+            <span class="ion-ios-play-outline"></span>
+          </button>
         </div>
 
         <!-- Video Player (Initialized either when 'random' is selected or a video is selected from the list.) -->
@@ -31,6 +33,7 @@
         </div>
 
         <!-- List of Videos to Play -->
+        <video-list></video-list>
 
       </section>
 
@@ -49,11 +52,13 @@
 <script>
 
 import CreateHeader from './components/CreateHeader.vue'
+import VideoList from './components/VideoList.vue'
 
 export default {
   name: 'app',
   components: {
-    CreateHeader
+    CreateHeader,
+    VideoList
   },
   data () {
     return {
@@ -66,23 +71,14 @@ export default {
 <style lang="scss">
 
   @import "./assets/scss/variables.scss";
-
-  body {
-    margin: 0;
-    box-sizing: border-box;
-  }
+  @import "./assets/scss/global.scss";
 
   #app {
     font-family: 'Alias', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-  }
 
-  a {
-    color: $green;
-  }
-
-  button {
-    cursor: pointer;
+    max-width: 1500px;
+    margin: 0 auto;
   }
 
   .container {

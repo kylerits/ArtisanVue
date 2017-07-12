@@ -1,8 +1,8 @@
 <template lang="html">
 
-  <ul class="video-list">
+  <div class="video-list">
     <video-list-item></video-list-item>
-  </ul>
+  </div>
 
 </template>
 

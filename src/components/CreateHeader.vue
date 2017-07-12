@@ -43,6 +43,10 @@
   import MyAside from './Aside.vue'
   import SearchForm from './SearchForm.vue'
 
+  $(document).ready( function() {
+    console.log('jQuery is running')
+  })
+
   export default {
     components: {
       MyAside,

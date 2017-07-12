@@ -56,7 +56,11 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
   ]
 }
 

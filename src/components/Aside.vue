@@ -4,9 +4,6 @@
     <section class="categories">
       <!-- List of Different Categories -->
     </section>
-    <section class="social">
-      <!-- Links to my social media and github -->
-    </section>
   </aside>
 
 </template>

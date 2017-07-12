@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <li class="video-list-item default">
+  <div class="video-list-item default js-tilt" data-tilt data-tilt-perspective="300" data-tilt-speed="400" data-tilt-max="25">
 
     <div class="video-info">
 
@@ -16,13 +16,20 @@
       </button>
     </div>
 
-  </li>
+  </div>
 
 </template>
 
 <script>
-export default {
-}
+
+  import Tilt from 'tilt.js'
+
+  export default {
+  }
+
+  const tilt = $('.js-tilt').tilt()
+  tilt.on('change', console.log('Tilting!'))
+
 </script>
 
 <style lang="scss">

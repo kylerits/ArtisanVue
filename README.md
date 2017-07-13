@@ -1,4 +1,4 @@
-# artisan
+# Artisan
 
 > A Vue.js project
 

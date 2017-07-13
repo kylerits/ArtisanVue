@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <div class="video-list-item default js-tilt" data-tilt data-tilt-perspective="300" data-tilt-speed="400" data-tilt-max="25">
+  <div class="video-list-item default js-tilt" >
 
     <div class="video-info">
 
@@ -22,13 +22,30 @@
 
 <script>
 
-  import Tilt from 'tilt.js'
+  import VanillaTilt from 'vanilla-tilt'
 
-  export default {
+  const element = document.querySelector('.js-tilt')
+  VanillaTilt.init( element, {
+    max: 20,
+    speed: 400
+  })
+
+  if ( element ) {
+    element.addEventListener('click', function (event) {
+      console.log( "event" )
+    })
+  } else {
+    console.log( element )
   }
 
-  const tilt = $('.js-tilt').tilt()
-  tilt.on('change', console.log('Tilting!'))
+  export default {
+
+    components: {
+      VanillaTilt
+    }
+  }
+
+
 
 </script>
 

@@ -12,7 +12,7 @@
       <!-- Player Section -->
       <section id="player">
 
-        <div class="section-header">
+        <div class="section-header standIn">
           <!-- Initial Message -->
           <h2>Play a Random Video</h2>
           <!-- Plays a random video from the list. Or the first one. It's not really to important which. -->
@@ -90,6 +90,14 @@ export default {
       min-width: 250px;
       padding: 2em;
       box-sizing: border-box;
+
+      .section-header {
+        &.standIn {
+          text-align: center;
+          box-shadow: $drop-shadow;
+          padding: 2em;
+        }
+      }
     }
   }
 

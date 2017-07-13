@@ -1,10 +1,10 @@
 <template lang="html">
 
-  <div class="video-list-item default js-tilt" >
+  <div class="video-list-item default js-tilt" data-tilt data-tilt-perspective="500">
 
     <div class="video-info">
 
-      <h3 class="video-title">This is a video's title - [30:00]</h3>
+      <h3 class="video-title"><a href="#">This is a video's title. It's here to give me an idea for a string length. - [30:00]</a></h3>
 
       <p class="video-meta"><span class="tag">Category</span> submitted at <span class="date-time">Time</span> by <a href="#">u/User</a></p>
 
@@ -24,24 +24,20 @@
 
   import VanillaTilt from 'vanilla-tilt'
 
-  const element = document.querySelector('.js-tilt')
-  VanillaTilt.init( element, {
-    max: 20,
-    speed: 400
-  })
-
-  if ( element ) {
-    element.addEventListener('click', function (event) {
-      console.log( "event" )
-    })
-  } else {
-    console.log( element )
-  }
-
   export default {
-
     components: {
       VanillaTilt
+    },
+    mounted () {
+      const element = document.querySelector('.js-tilt')
+
+      VanillaTilt.init( element, {
+        max: 10,
+        speed: 600,
+        perspective: 1000
+      })
+
+      console.log( element )
     }
   }
 
@@ -62,8 +58,13 @@
     justify-content: space-between;
     box-sizing: border-box;
 
+    transform-style: preserve-3d;
+
+    box-shadow: $drop-shadow;
+
     .video-info {
       padding: 1em;
+      transform: translateZ(10px) scale(.95);
 
       .video-title {
         margin-bottom: .5em;
@@ -92,6 +93,10 @@
       justify-content: center;
       align-items: center;
       border-left: solid 1px lightgrey;
+
+      button {
+        transform: translateZ(10px) scale(.8);
+      }
     }
 
     // Category Specific Styles

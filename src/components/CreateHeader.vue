@@ -15,21 +15,21 @@
 
       <!-- Action Buttons -->
       <ul class='action-buttons'>
-        <li><button type="button" name="search" class="btn-icon" @click="show = !show">
+        <li><button type="button" name="search" class="btn-icon" @click="showSearch()">
           <span class="ion-ios-search"></span>
         </button></li>
-        <li><button type="button" name="open" class="btn-icon" @click="visible = !visible">
-          <span class="ion-ios-plus-outline" v-if="!visible"></span>
+        <li><button type="button" name="open" class="btn-icon" @click="showCategories()">
+          <span class="ion-ios-plus-outline" v-if="!visibleCat"></span>
           <span class="ion-ios-minus-outline" v-else></span>
         </button></li>
       </ul>
 
       <transition name="slide-fade">
-        <search-form key="1" v-if="show"></search-form>
+        <search-form key="1" v-if="visibleSearch" class="menu"></search-form>
       </transition>
 
       <transition name="slide-fade">
-        <my-aside key="2" v-if="visible"></my-aside>
+        <my-aside key="2" v-if="visibleCat" class="menu"></my-aside>
       </transition>
 
     </div>
@@ -43,10 +43,6 @@
   import MyAside from './Aside.vue'
   import SearchForm from './SearchForm.vue'
 
-  $(document).ready( function() {
-    console.log('jQuery is running')
-  })
-
   export default {
     components: {
       MyAside,
@@ -54,8 +50,22 @@
     },
     data () {
       return {
-        visible: false,
-        show: false
+        visibleCat: false,
+        visibleSearch: false
+      }
+    },
+    methods: {
+      showCategories () {
+        if ( this.visibleSearch ) {
+          this.visibleSearch = !this.visibleSearch
+        }
+        this.visibleCat = !this.visibleCat
+      },
+      showSearch () {
+        if ( this.visibleCat ) {
+          this.visibleCat = !this.visibleCat
+        }
+        this.visibleSearch = !this.visibleSearch
       }
     }
   }
@@ -90,6 +100,10 @@
         li {
           display: inline-block;
         }
+      }
+
+      .menu {
+        box-shadow: $drop-shadow;
       }
     }
   }

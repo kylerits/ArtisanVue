@@ -3,14 +3,20 @@
   <aside id="aside">
     <section class="categories">
       <!-- List of Different Categories -->
+      <video-categories></video-categories>
     </section>
   </aside>
 
 </template>
 
 <script>
+import VideoCategories from './VideoCategories.vue'
+
 export default {
-  props: ['visible']
+  props: ['visible'],
+  components: {
+    VideoCategories
+  }
 }
 </script>
 
@@ -23,7 +29,7 @@ export default {
     height: auto;
     z-index: 10;
     background-color: whitesmoke;
-    padding: 2em;
+    padding: 1em;
     box-sizing: border-box;
   }
 

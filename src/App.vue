@@ -29,7 +29,7 @@
       <section id="listing">
 
         <div class="section-header">
-          <h2>All</h2>
+          <h2>{{ categoryMain }}</h2>
         </div>
 
         <!-- List of Videos to Play -->
@@ -53,16 +53,23 @@
 
 import CreateHeader from './components/CreateHeader.vue'
 import VideoList from './components/VideoList.vue'
+import VideoCategories from './components/VideoCategories.vue'
 
 export default {
   name: 'app',
   components: {
     CreateHeader,
-    VideoList
+    VideoList,
+    VideoCategories    
   },
   data () {
     return {
-
+      categoryMain: 'all'
+    }
+  },
+  methods: {
+    changeCategory (selected) {
+      console.log( selected )
     }
   }
 }

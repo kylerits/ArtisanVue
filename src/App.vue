@@ -29,7 +29,7 @@
       <section id="listing">
 
         <div class="section-header">
-          <h2>{{ categoryMain }}</h2>
+          <h2 class="category-header">{{ categoryMain }}</h2>
         </div>
 
         <!-- List of Videos to Play -->
@@ -103,6 +103,18 @@ export default {
           box-shadow: $drop-shadow;
           padding: 2em;
         }
+
+        .category-header {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  @media screen and ( max-width: 900px ) {
+    .container {
+      section {
+        width: 100%;
       }
     }
   }

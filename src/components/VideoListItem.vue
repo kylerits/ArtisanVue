@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <div class="video-list-item default js-tilt" data-tilt data-tilt-perspective="500">
+  <div class="video-list-item default" >
 
     <div class="video-info">
 
@@ -22,22 +22,8 @@
 
 <script>
 
-  import VanillaTilt from 'vanilla-tilt'
-
   export default {
-    components: {
-      VanillaTilt
-    },
-    mounted () {
-      const element = document.querySelector('.js-tilt')
 
-      VanillaTilt.init( element, {
-        max: 10,
-        speed: 600,
-        perspective: 1000
-      })
-
-    }
   }
 
 
@@ -58,8 +44,6 @@
     box-sizing: border-box;
 
     transform-style: preserve-3d;
-
-    box-shadow: $drop-shadow;
 
     .video-info {
       padding: 1em;

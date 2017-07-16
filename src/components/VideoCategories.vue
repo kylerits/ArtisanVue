@@ -45,11 +45,19 @@
 
     margin: 0;
     padding: 0;
+    transform: translateZ(40px);
+    text-align: center;
+    transform-style: preserve-3d;
 
     li {
       display: inline-block;
       box-sizing: border-box;
-      margin: .8em;
+      margin: .8em .5em;
+      transition: all .2s ease;
+
+      &:hover {
+        transform: translateZ(50px);
+      }
 
       a.category {
         padding: .5em 1em;

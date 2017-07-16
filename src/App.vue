@@ -51,26 +51,25 @@
 
 <script>
 
+import {bus} from './main.js'
 import CreateHeader from './components/CreateHeader.vue'
 import VideoList from './components/VideoList.vue'
-import VideoCategories from './components/VideoCategories.vue'
 
 export default {
   name: 'app',
   components: {
     CreateHeader,
-    VideoList,
-    VideoCategories    
+    VideoList
   },
   data () {
     return {
       categoryMain: 'all'
     }
   },
-  methods: {
-    changeCategory (selected) {
-      console.log( selected )
-    }
+  created () {
+    bus.$on('changeCategory', ( value ) => {
+      this.categoryMain = value
+    })
   }
 }
 </script>

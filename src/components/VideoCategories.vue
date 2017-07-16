@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import {bus} from '../main.js'
+
   export default {
     data () {
       return {
@@ -29,7 +31,7 @@
     methods: {
       changeCategory ( cat ) {
         var newCategory = cat
-        this.$emit('changeCategory', newCategory)
+        bus.$emit('changeCategory', newCategory)
       }
     }
   }

@@ -1,17 +1,17 @@
 <template lang="html">
 
-  <div class="video-list-item default" >
+  <div class="video-list-item" :class="category" >
 
     <div class="video-info">
 
-      <h3 class="video-title"><a href="#">This is a video's title. It's here to give me an idea for a string length. - [30:00]</a></h3>
+      <h3 class="video-title"><a href="#">{{ title }} - [{{ timestamp }}]</a></h3>
 
-      <p class="video-meta"><span class="tag">Category</span> submitted at <span class="date-time">Time</span> by <a href="#">u/User</a></p>
+      <p class="video-meta"><span class="tag" :class="category">{{ category }}</span> submitted at <span class="date-time">{{ date }}</span> by <a :href="userLink">{{ user }}</a></p>
 
     </div>
 
     <div class="video-button-area">
-      <button type="button" name="PlayVideo" class="btn-icon btn-play">
+      <button type="button" name="PlayVideo" class="btn-icon btn-play" @click="pushVideo( title, link, category, user, userLink, date, timestamp )">
         <span class="ion-ios-play-outline"></span>
       </button>
     </div>
@@ -22,11 +22,30 @@
 
 <script>
 
+  import { bus } from '../main.js'
+
   export default {
+    props: ['title', 'link', 'category', 'user', 'userLink', 'date', 'timestamp'],
+    methods: {
+      pushVideo ( title, link, category, user, userLink, date, timestamp ) {
 
+        var video = {
+
+          title: title,
+          link: link,
+          category: category,
+          user: user,
+          userLink: userLink,
+          date: date,
+          timestamp: timestamp
+
+        }
+
+        bus.$emit( 'pushVideo', video )
+
+      }
+    }
   }
-
-
 
 </script>
 
@@ -66,12 +85,41 @@
           color: white;
           background-color: grey;
           border-radius: 2em;
+
+          &.maintenance {
+            background-color: $color-maintenance;
+          }
+
+          &.production {
+            background-color: $color-production;
+          }
+
+          &.design {
+            background-color: $color-design;
+          }
+
+          &.performance {
+            background-color: $color-performance;
+          }
+
+          &.culinary {
+            background-color: $color-culinary;
+          }
+
+          &.modification {
+            background-color: $color-modification;
+          }
+
+          &.meta {
+            background-color: $color-meta;
+          }
         }
       }
     }
 
     .video-button-area {
       width: 100px;
+      min-width: 100px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -83,8 +131,52 @@
     }
 
     // Category Specific Styles
-    &.default {
+    &.all {
       border-left: solid .5em grey;
+    }
+    &.maintenance {
+      border-left: solid .5em $color-maintenance;
+    }
+    &.production {
+      border-left: solid .5em $color-production;
+    }
+    &.design {
+      border-left: solid .5em $color-design;
+    }
+    &.performance {
+      border-left: solid .5em $color-performance;
+    }
+    &.culinary {
+      border-left: solid .5em $color-culinary;
+    }
+    &.modification {
+      border-left: solid .5em $color-modification;
+    }
+    &.meta {
+      border-left: solid .5em $color-meta;
+    }
+    &.other {
+      border-left: solid .5em grey;
+    }
+  }
+
+  @media screen and ( max-width: 500px ) {
+    .video-list-item {
+
+
+      .video-info {
+        font-size: .8em;
+      }
+
+      .video-button-area {
+
+        width: 80px;
+        min-width: 80px;
+
+        button {
+          font-size: 1.7em;
+        }
+      }
     }
   }
 

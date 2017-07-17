@@ -45,6 +45,10 @@ export default {
     padding: 1em;
     box-sizing: border-box;
     transform-style: preserve-3d;
+
+    h2 {
+      text-align: center;
+    }
   }
 
 </style>

@@ -33,6 +33,8 @@ export default {
 
         background-color: transparent;
         padding: .5em 0;
+        padding-right: 2.5em;
+        box-sizing: border-box;
         width: 100%;
         line-height: 1.5em;
         border: none;

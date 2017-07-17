@@ -67,7 +67,7 @@
         color: white;
         letter-spacing: 1px;
 
-        &.all { }
+        &.all {}
 
         &.maintenance {
           background-color: $color-maintenance;

@@ -12,16 +12,23 @@
       <!-- Player Section -->
       <section id="player">
 
-        <div class="section-header standIn">
-          <!-- Initial Message -->
-          <h2>Play a Random Video</h2>
-          <!-- Plays a random video from the list. Or the first one. It's not really to important which. -->
-          <button type="button" name="playRandom" class="btn-icon btn-play">
-            <span class="ion-ios-play-outline"></span>
-          </button>
-        </div>
+        <transition name="slide-fade-up">
+          <div class="section-header standIn" v-if="!playerVisible">
+            <!-- Initial Message -->
+            <h2>App Title and Information</h2>
+            <p>Lorem ipsum dolor sit amet, mea ea duis laudem, scripta splendide pro ne. Mei no choro putent bonorum, mea eu velit tibique.</p>
+          </div>
+        </transition>
 
         <!-- Video Player (Initialized either when 'random' is selected or a video is selected from the list.) -->
+
+        <transition name="slide-fade-in">
+          <div class="player" v-if="playerVisible">
+            <!-- Initial Message -->
+            <h2 class="videoTitle"><a :href="link">{{ title }}</a></h2>
+            <p class="video-meta"><span class="tag" :class="category">{{ category }}</span> submitted at <span class="date-time">{{ date }}</span> by <a :href="userLink">{{ user }}</a></p>
+          </div>
+        </transition>
 
       </section>
 
@@ -63,12 +70,33 @@ export default {
   },
   data () {
     return {
-      categoryMain: 'all'
+      categoryMain: 'all',
+      playerVisible: false,
+      title: '',
+      link: '',
+      category: '',
+      user: '',
+      userLink: '',
+      date: '',
+      timestamp: ''
     }
   },
   created () {
     bus.$on('changeCategory', ( value ) => {
       this.categoryMain = value
+    }),
+    bus.$on('pushVideo', ( video ) => {
+      
+      this.playerVisible = true
+
+      this.title = video.title
+      this.link = video.link
+      this.category = video.category
+      this.user = video.user
+      this.userLink = video.userLink
+      this.date = video.date
+      this.timestamp = video.timestamp
+
     })
   }
 }
@@ -97,9 +125,58 @@ export default {
       padding: 2em;
       box-sizing: border-box;
 
+      .player {
+        box-shadow: $drop-shadow;
+        padding: 2em;
+
+        .video-meta {
+          font-size: .8em;
+          color: grey; //change to lighter font-color
+          margin: 0;
+
+          .tag {
+            padding: .5em 1em;
+            font-size: .8em;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: white;
+            background-color: grey;
+            border-radius: 2em;
+
+            &.maintenance {
+              background-color: $color-maintenance;
+            }
+
+            &.production {
+              background-color: $color-production;
+            }
+
+            &.design {
+              background-color: $color-design;
+            }
+
+            &.performance {
+              background-color: $color-performance;
+            }
+
+            &.culinary {
+              background-color: $color-culinary;
+            }
+
+            &.modification {
+              background-color: $color-modification;
+            }
+
+            &.meta {
+              background-color: $color-meta;
+            }
+          }
+        }
+      }
+
       .section-header {
+
         &.standIn {
-          text-align: center;
           box-shadow: $drop-shadow;
           padding: 2em;
         }
@@ -110,6 +187,36 @@ export default {
       }
     }
   }
+
+  // Transition Component Styling
+
+  .slide-fade-up-enter-active {
+    transition: all .2s ease;
+  }
+  .slide-fade-up-leave-active {
+    transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-up-enter, .slide-fade-up-leave-to {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  .slide-fade-in-enter-active {
+    transition: all .2s ease .25s;
+  }
+  .slide-fade-in-leave-active {
+    transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0) .25s;
+  }
+  .slide-fade-in-enter {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  .slide-fade-in-leave-to {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  // Media Queries
 
   @media screen and ( max-width: 900px ) {
     .container {
